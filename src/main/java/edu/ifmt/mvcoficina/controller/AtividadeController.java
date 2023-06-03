@@ -1,9 +1,12 @@
 package edu.ifmt.mvcoficina.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import edu.ifmt.mvcoficina.model.Atividade;
 import edu.ifmt.mvcoficina.repository.Atividades;
@@ -14,15 +17,28 @@ class AtividadeController {
 	
 	@Autowired
 	private Atividades atividades;
+	
+	@RequestMapping
+	public String allAtividades(String id_aluno) {
+		List<Atividade> listaAtividades = atividades.findAllByaluno_id_aluno(id_aluno);
+		return "MinhasAtividades";
+	}
 
 	@RequestMapping("/novo")
-	public String novo() {
-		return "CadastroAtividade";
+	public ModelAndView novo() {
+		ModelAndView mnv = new ModelAndView("CadastroAtividade");
+		mnv.addObject(new Atividade());
+		return mnv;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String salvar(Atividade atividade) {
+	public ModelAndView salvar(Atividade atividade) {
+		
 		atividades.save(atividade);
-		return "CadastroAtividade";
+		ModelAndView mnv = new ModelAndView("CadastroAtividade");
+		mnv.addObject("mensagem", "Salvo com sucesso.");
+		return mnv;
+		
 	}
+	
 }

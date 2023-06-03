@@ -36,7 +36,6 @@ public class TipoAtividade {
 		return Objects.hash(descricao, id_tipo_atividade);
 	}
 	
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

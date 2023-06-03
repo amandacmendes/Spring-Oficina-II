@@ -1,0 +1,59 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{LayoutPadrao}">
+
+<head>
+	<title>Atividades Complementares</title>
+</head>
+
+<body>
+
+	<div class="card">
+		<div class="card-header tux-titulo-panel">
+			<span class="ux-titulo-panel"> Pesquisa</span>
+		</div>
+
+		<section class="pt-3" layout:fragment="conteudo">
+
+			<div class="d-flex flex-row-reverse px-4">
+				<a href="/atividade/novo/" class="btn btn-primary add-activity-btn px-4">
+					Add New Activity</a>
+			</div>
+
+			<div class="card-body">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th scope="col" class="text-center">-</th>
+							<th scope="col" class="text-center w-50">Descrição</th>
+							<th scope="col">Carga Horária</th>
+							<th scope="col">Instituição</th>
+							<th scope="col">Status</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr scope="row" th:each="atividade : ${atividades}">
+							<td></td>
+							<td th:text="${atividade.descricao_atividade}"></td>
+							<td th:text="${atividade.carga_horaria}"></td>
+							<td th:text="${{atividade.instsituicao}}"></td>
+							<td class="text-center">
+								<span class="badge" th:text="${atividade.status.descricao}"
+									th:classappend="${atividade.pendente ? 'badge-warning' : 'badge-success'}"></span>
+							</td>
+							<td class="text-center">
+								<a
+									th:href="@{/atividades/{id_ativ_complementar}(id_ativ_complementar=${atividade.id_ativ_complementar})}"><i
+										class="material-icons">edit</i></a>
+							</td>
+							<td colspan="6" th:if="${#lists.isEmpty(atividades)}">Nenhum atividade foi encontrada.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</section>
+	</div>
+</body>

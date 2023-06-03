@@ -2,12 +2,15 @@ package edu.ifmt.mvcoficina.model;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+
+
 
 @Entity
 public class Atividade {
@@ -20,13 +23,20 @@ public class Atividade {
 	private String descricao_atividade;
 	private int carga_horaria;
 	private String instituicao;
+
+	@Column(columnDefinition = "int4 default 2023")
 	private int ano_conclusao;
 	private String observacao;
+
+	@Column(columnDefinition = "varchar(30) default 'PENDENTE' ")
+	private StatusAtividade status;
 	
 	@ManyToOne
+	@Column(columnDefinition = "int4 default 1") //aluno 1 - user teste
 	private Aluno aluno;
 	
 	@ManyToOne
+	@Column(columnDefinition = "int4 default 1") //avaliador 1 - user teste
 	private Avaliador avaliador;
 	
 	@ManyToOne
@@ -74,7 +84,14 @@ public class Atividade {
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
-
+	
+	public StatusAtividade getStatus() {
+		return status;
+	}
+	public void setStatus(StatusAtividade status) {
+		this.status = status;
+	}
+	
 	public Avaliador getAvaliador() {
 		return avaliador;
 	}
@@ -95,13 +112,12 @@ public class Atividade {
 	public void setTipo_atividade(TipoAtividade tipo_atividade) {
 		this.tipo_atividade = tipo_atividade;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(aluno, ano_conclusao, avaliador, carga_horaria, descricao_atividade, id_ativ_complementar,
-				instituicao, observacao, tipo_atividade);
+				instituicao, observacao, status, tipo_atividade);
 	}
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -116,7 +132,7 @@ public class Atividade {
 				&& Objects.equals(descricao_atividade, other.descricao_atividade)
 				&& Objects.equals(id_ativ_complementar, other.id_ativ_complementar)
 				&& Objects.equals(instituicao, other.instituicao) && Objects.equals(observacao, other.observacao)
-				&& Objects.equals(tipo_atividade, other.tipo_atividade);
+				&& status == other.status && Objects.equals(tipo_atividade, other.tipo_atividade);
 	}
-	
+
 }
