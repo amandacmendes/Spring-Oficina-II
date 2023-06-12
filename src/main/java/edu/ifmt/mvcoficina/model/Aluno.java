@@ -76,5 +76,5 @@ public class Aluno {
 				&& Objects.equals(id_aluno, other.id_aluno) && matricula == other.matricula
 				&& Objects.equals(nome, other.nome) && Objects.equals(telefone, other.telefone);
 	}
-		
+	
 }

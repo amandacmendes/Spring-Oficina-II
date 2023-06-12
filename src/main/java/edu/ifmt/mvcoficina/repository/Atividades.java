@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import edu.ifmt.mvcoficina.model.Aluno;
 import edu.ifmt.mvcoficina.model.Atividade;
 
 public interface Atividades extends JpaRepository<Atividade, Long> {
 	
-	List<Atividade> findAllByaluno_id_aluno(String id_aluno);
+	List<Atividade> findAllByAluno(Aluno aluno);
 
 }

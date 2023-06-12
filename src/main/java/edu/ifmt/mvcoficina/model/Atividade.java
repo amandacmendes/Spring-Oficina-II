@@ -32,11 +32,9 @@ public class Atividade {
 	private StatusAtividade status;
 	
 	@ManyToOne
-	@Column(columnDefinition = "int4 default 1") //aluno 1 - user teste
 	private Aluno aluno;
 	
 	@ManyToOne
-	@Column(columnDefinition = "int4 default 1") //avaliador 1 - user teste
 	private Avaliador avaliador;
 	
 	@ManyToOne

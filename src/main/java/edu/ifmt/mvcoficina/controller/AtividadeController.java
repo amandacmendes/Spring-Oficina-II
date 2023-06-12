@@ -8,20 +8,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.ifmt.mvcoficina.model.Aluno;
 import edu.ifmt.mvcoficina.model.Atividade;
 import edu.ifmt.mvcoficina.repository.Atividades;
 
 @Controller
 @RequestMapping("/atividade")
 class AtividadeController {
-	
+
 	@Autowired
 	private Atividades atividades;
-	
+
 	@RequestMapping
-	public String allAtividades(String id_aluno) {
-		List<Atividade> listaAtividades = atividades.findAllByaluno_id_aluno(id_aluno);
-		return "MinhasAtividades";
+	public ModelAndView allAtividades(Aluno a) {
+		//List<Atividade> listaAtividades = atividades.findAllByAluno(a);
+		List<Atividade> listaAtividades = atividades.findAll();
+		ModelAndView mv = new ModelAndView("MinhasAtividades");
+		mv.addObject("atividades", listaAtividades);
+		return mv;
 	}
 
 	@RequestMapping("/novo")
@@ -30,15 +34,15 @@ class AtividadeController {
 		mnv.addObject(new Atividade());
 		return mnv;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView salvar(Atividade atividade) {
-		
+
 		atividades.save(atividade);
 		ModelAndView mnv = new ModelAndView("CadastroAtividade");
 		mnv.addObject("mensagem", "Salvo com sucesso.");
 		return mnv;
-		
+
 	}
-	
+
 }

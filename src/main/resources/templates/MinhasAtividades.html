@@ -37,17 +37,17 @@
 							<td></td>
 							<td th:text="${atividade.descricao_atividade}"></td>
 							<td th:text="${atividade.carga_horaria}"></td>
-							<td th:text="${{atividade.instsituicao}}"></td>
+							<td th:text="${{atividade.instituicao}}"></td>
 							<td class="text-center">
 								<span class="badge" th:text="${atividade.status.descricao}"
-									th:classappend="${atividade.pendente ? 'badge-warning' : 'badge-success'}"></span>
+									th:classappend="${atividade.status == 'pendente' ? 'badge-warning' : 'badge-success'}"></span>
 							</td>
 							<td class="text-center">
 								<a
 									th:href="@{/atividades/{id_ativ_complementar}(id_ativ_complementar=${atividade.id_ativ_complementar})}"><i
 										class="material-icons">edit</i></a>
 							</td>
-							<td colspan="6" th:if="${#lists.isEmpty(atividades)}">Nenhum atividade foi encontrada.
+							<td colspan="6" th:if="${#lists.isEmpty(atividades)}">Nenhuma atividade foi encontrada.
 							</td>
 						</tr>
 					</tbody>
