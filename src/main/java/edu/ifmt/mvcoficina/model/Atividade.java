@@ -16,7 +16,7 @@ import javax.persistence.SequenceGenerator;
 public class Atividade {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "atividade_sequence")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "atividade_sequence")
 	@SequenceGenerator(name="atividade_sequence", sequenceName = "atividade_sequence")
 	private Long id_ativ_complementar;
 	

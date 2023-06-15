@@ -10,7 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import edu.ifmt.mvcoficina.model.Aluno;
 import edu.ifmt.mvcoficina.model.Atividade;
+import edu.ifmt.mvcoficina.model.TipoAtividade;
 import edu.ifmt.mvcoficina.repository.Atividades;
+import edu.ifmt.mvcoficina.repository.TiposAtividade;
 
 @Controller
 @RequestMapping("/atividade")
@@ -18,10 +20,13 @@ class AtividadeController {
 
 	@Autowired
 	private Atividades atividades;
+	
+	@Autowired
+	private TiposAtividade tipos;
 
 	@RequestMapping
 	public ModelAndView allAtividades(Aluno a) {
-		//List<Atividade> listaAtividades = atividades.findAllByAluno(a);
+		// List<Atividade> listaAtividades = atividades.findAllByAluno(a);
 		List<Atividade> listaAtividades = atividades.findAll();
 		ModelAndView mv = new ModelAndView("MinhasAtividades");
 		mv.addObject("atividades", listaAtividades);
@@ -32,6 +37,10 @@ class AtividadeController {
 	public ModelAndView novo() {
 		ModelAndView mnv = new ModelAndView("CadastroAtividade");
 		mnv.addObject(new Atividade());
+
+		List<TipoAtividade> allTipos = tipos.findAll();
+		mnv.addObject("tipoatividade", allTipos);
+
 		return mnv;
 	}
 

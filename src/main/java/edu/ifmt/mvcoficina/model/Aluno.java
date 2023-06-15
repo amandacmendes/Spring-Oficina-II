@@ -9,19 +9,40 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Aluno {
+public class Aluno{
 
-	@Id
+	
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "aluno_sequence")
 	@SequenceGenerator(name="aluno_sequence", sequenceName = "aluno_sequence")
+	@Id
 	private Long id_aluno;
 	
 	private String cpf;
 	private String nome;
 	private int matricula;
 	private String email;
+	private String senha;
 	private String telefone;
 	
+	public Aluno() {
+	}
+	
+	public Aluno(int matricula) {
+		super();
+		this.matricula = matricula;
+	}
+	
+	public Aluno(String email) {
+		super();
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 	public Long getId_aluno() {
 		return id_aluno;
 	}
@@ -61,8 +82,9 @@ public class Aluno {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(cpf, email, id_aluno, matricula, nome, telefone);
+		return Objects.hash(cpf, email, id_aluno, matricula, nome, senha, telefone);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -74,7 +96,8 @@ public class Aluno {
 		Aluno other = (Aluno) obj;
 		return Objects.equals(cpf, other.cpf) && Objects.equals(email, other.email)
 				&& Objects.equals(id_aluno, other.id_aluno) && matricula == other.matricula
-				&& Objects.equals(nome, other.nome) && Objects.equals(telefone, other.telefone);
+				&& Objects.equals(nome, other.nome) && Objects.equals(senha, other.senha)
+				&& Objects.equals(telefone, other.telefone);
 	}
 	
 }

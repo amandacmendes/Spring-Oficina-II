@@ -48,9 +48,8 @@
 				<div class="form-group">
 					<label for="tipo_atividade">Tipo de Atividade</label>
 					<select class="form-control" id="tipo_atividade" name="tipo_atividade" required>
-						<option value="">Selecione</option>
-						<option value="1">Atividade de extensão</option>
-						<option value="2">Atividade 2</option>
+						<option th:each="tipo : ${tipoatividade}" th:value="${tipo.id_tipo_atividade}"
+							th:label='${tipo.descricao}'> Selecione </option>
 					</select>
 				</div>
 				<div class="form-group">
@@ -73,6 +72,15 @@
 					<label for="observacao">Observação</label>
 					<textarea class="form-control" id="observacao" name="observacao" rows="3"></textarea>
 				</div>
+				
+				<div class="form-group">
+					<input type="hidden" class="form-control" id="status" name="status" value="PENDENTE">
+				</div>
+				<div class="form-group">
+					<input type="hidden" class="form-control" id="aluno_id_aluno" name="aluno_id_aluno" value="1">
+				</div>
+				
+				
 				<button type="submit" class="btn btn-primary">Enviar</button>
 			</form>
 		</div>

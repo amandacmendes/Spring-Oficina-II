@@ -39,8 +39,8 @@
 							<td th:text="${atividade.carga_horaria}"></td>
 							<td th:text="${{atividade.instituicao}}"></td>
 							<td class="text-center">
-								<span class="badge" th:text="${atividade.status.descricao}"
-									th:classappend="${atividade.status == 'pendente' ? 'badge-warning' : 'badge-success'}"></span>
+								<span class="badge " th:text="${atividade.status.descricao}"
+									th:classappend="${atividade.status.descricao == 'Pendente' ? 'badge-warning' : 'badge-success'}"></span>
 							</td>
 							<td class="text-center">
 								<a
